@@ -18,13 +18,14 @@ fn main(){
         .collect();
 
     let mut position : (i64,i64) = (0,0);
+    let mut aim = 0;
 
     for (action, number)  in actions {
         let (x,y) = position;
-        position = match action.as_str() {
-            "forward" => (x+number,y),
-            "down" => (x,y+number),
-            "up" => (x,y-number),
+        match action.as_str() {
+            "forward" => position = (x+number,y + number*aim),
+            "down" => aim += number,
+            "up" => aim -= number,
             _ => panic!("Invalid action {}.", action),
         }
     }
