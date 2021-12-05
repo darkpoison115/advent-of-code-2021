@@ -13,15 +13,12 @@ fn main(){
         .map(|line| line.unwrap().trim().parse::<i64>().unwrap())
         .collect();
 
-    let mut last_element = numbers[0];
     let mut counter = 0;
 
-    for number in numbers {
-        if last_element < number{
+    for i  in 0..(numbers.len() - 3) {
+        if numbers[i] - numbers[i+3] < 0{
             counter += 1;
         }
-
-        last_element = number;
     }
 
     println!("result {}", counter)
